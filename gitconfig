@@ -1,0 +1,16 @@
+[push]
+	default = simple
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+  lg = log --format="%Cred%h%Creset%s%Cgreen(%cr)%C(blue)<%an>%Creset%C(yellow)%d%Creset" --graph
+  co = checkout
+[diff]
+	tool = vimdiff
+[core]
+	editor = /usr/local/bin/vim
+[user]
+	name = Alex Foster
+	initials = af
+	email = alexjfno1@gmail.com
