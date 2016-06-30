@@ -5,8 +5,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 let g:vundle_default_git_proto = 'git'
 call vundle#begin()
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'craigemery/vim-autotag'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
@@ -29,6 +29,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ngmy/vim-rubocop'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
@@ -39,7 +40,7 @@ highlight GitGutterChange ctermfg=yellow
 highlight GitGutterDelete ctermfg=red
 highlight GitGutterChangeDelete ctermfg=yellow
 colorscheme pencil
-let g:airline_theme='simple'
+let g:airline_theme='wombat'
 " setting hidden allows undo to work after buffer was closed
 set hidden
 set noswapfile
@@ -47,13 +48,13 @@ set nobackup
 set mouse=a
 set nocompatible
 set tabstop=2 shiftwidth=2 expandtab
+set relativenumber
 set number
 set nowrap
 set backspace=indent,eol,start
 set textwidth=0
 set wrapmargin=0
 set t_Co=256
-set relativenumber
 set background=dark
 map ,n :NERDTreeFind<CR>
 let g:ctrlp_show_hidden = 1
