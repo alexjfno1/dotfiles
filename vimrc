@@ -75,22 +75,6 @@ nmap <Tab> :b#<CR>
 let g:airline_powerline_fonts = 1
 set laststatus=2
 
-" Function and key mapping for running cucumber test
-" ,t - Run scenario under cursor
-" ,T - Run whole feature file
-let mapleader = ","
-autocmd FileType cucumber nmap <leader>t :call RunCucumberTest(line('.'))<CR>
-autocmd FileType cucumber nmap <leader>T :call RunCucumberTest()<CR>
-function! RunCucumberTest(...)
-        let cmd = 'bundle exec cucumber ' . expand('%') . (a:0 == 1 ? ':'.line('.') : '')
-        if strlen(cmd > 0)
-                execute ':wa'
-                execute ':Dispatch ' . cmd
-        elseif
-                echoerr "No test command to run"
-        endif
-endfunction
-
 set mouse+=a
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
@@ -118,10 +102,6 @@ endif
 
 " Format cucumber table
 map \| :Tab /\|<CR>
-
-map <F2> :colorscheme solarized<CR>:set background=light<CR>
-map <F3> :colorscheme molokai<CR>:set background=dark<CR>
-map <F4> :colorscheme solarized<CR>:set background=dark<CR>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -210,4 +190,3 @@ let g:gitgutter_sign_column_always = 1
 let g:gitgutter_highlight_lines = 0
 
 highlight clear SignColumn
-
