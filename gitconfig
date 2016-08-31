@@ -9,7 +9,7 @@
 [diff]
 	tool = vimdiff
 [core]
-	editor = /usr/local/bin/vim
+	editor = vim
 [user]
 	name = Alex Foster
 	initials = af

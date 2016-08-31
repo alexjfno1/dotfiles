@@ -1,107 +1,21 @@
-set nocompatible
+set nocompatible                  " Must come first because it changes other options.
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-let g:vundle_default_git_proto = 'git'
-call vundle#begin()
-
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'craigemery/vim-autotag'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'scrooloose/syntastic'
-Plugin 'sjl/vitality.vim'
-Plugin 'lchi/vim-toffee'
-Plugin 'slim-template/vim-slim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ngmy/vim-rubocop'
-Plugin 'airblade/vim-gitgutter'
-
-call vundle#end()
-
-filetype plugin indent on
-syntax on
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
-colorscheme pencil
-let g:airline_theme='wombat'
-" setting hidden allows undo to work after buffer was closed
-set hidden
-set noswapfile
-set nobackup
-set mouse=a
-set nocompatible
-set tabstop=2 shiftwidth=2 expandtab
-set relativenumber
-set number
-set nowrap
-set backspace=indent,eol,start
-set textwidth=0
-set wrapmargin=0
-set t_Co=256
+"Colour scheme
+colorscheme Tomorrow-Night-Eighties
 set background=dark
-map ,n :NERDTreeFind<CR>
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.git|tmp|node_modules)'
-  \ }
-set cursorline
-set wildignore=*.keep,*~,*.swp
-" To quit all files quickly - useful for quitting 'git d' by holding down on Q
-map Q :qa<CR>
-au FileType css setl ofu=csscomplete#CompleteCSS
-au FocusLost * :wa
 
-" Toggle between the last 2 files
+" Format whole file
+map <C-f> mzgg=G`z
+
+" Map leader key
+let mapleader = ","
+
+" Tab to last buffer to make it easy to go to the last file you were in.
 nmap <Tab> :b#<CR>
 
-" Airline settings
-let g:airline_powerline_fonts = 1
-set laststatus=2
-
-set mouse+=a
-if &term =~ '^screen'
-    " tmux knows the extended mouse mode
-    set ttymouse=xterm2
-endif
-
-" Auto remove all trailing characters
-autocmd BufWritePre * :%s/\s\+$//e
-
-set timeout         " Do time out on mappings and others
-set timeoutlen=2000 " Wait {num} ms before timing out a mapping
-
-" When you’re pressing Escape to leave insert mode in the terminal, it will by
-" default take a second or another keystroke to leave insert mode completely
-" and update the statusline. This fixes that. I got this from:
-" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-if !has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
-
-" Format cucumber table
-map \| :Tab /\|<CR>
+" Exit Vim quickly
+map Q :qa<CR>
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -109,84 +23,161 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Quick togo last buffer basically
-nnoremap <leader><leader> <c-^>
-
-" Create window splits easier. The default
-" way is Ctrl-w,v and Ctrl-w,s. I remap
-" this to vv and ss
+" Create window splits easier. vv = vsplit, ss = hsplit
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-nmap <silent> ,qc :cclose<CR>
-nmap <silent> ,qo :copen<CR>
+" Turn on syntax highlighting.
+syntax enable  
 
-" NERDTREE
-nnoremap <C-f> :NERDTreeFind<cr><cr>
-noremap <C-n> :NERDTreeToggle<CR>
+" Turn on autoread to watch for changes
+set autoread                  
 
-" List Buffers
-nmap <silent> <Leader>b :CtrlPBuffer<CR>
+" Fires after you move the cursor and then let it sit still for updatetime
+:au CursorHold * checktime 
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" Turn on file type detection.
+filetype plugin indent on 
 
-" Quick close
-nmap <leader>q :q<CR>
+" Display incomplete commands.
+set showcmd   
 
-" hit ,f to find the definition of the current class
-" this uses ctags. the standard way to get this is Ctrl-]
-nnoremap <silent> ,f <C-]>
+" Display the mode you're in.
+set showmode   
 
-" via: http://rails-bestpractices.com/posts/60-remove-trailing-whitespace
-" Strip trailing whitespace
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-command! StripTrailingWhitespaces call <SID>StripTrailingWhitespaces()
-nmap <leader>sw :StripTrailingWhitespaces<CR>
+" Intuitive backspacing.
+set backspace=indent,eol,start
 
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    else
-      " Map cursor for insert mode
-      let &t_SI .= "\<Esc>[5 q"
-      " solid block
-      let &t_EI .= "\<Esc>[2 q"
-      " 1 or 0 -> blinking block
-      " 3 -> blinking underscore
-      " Recent versions of xterm (282 or above) also support
-      " 5 -> blinking vertical bar
-      " 6 -> solid vertical bar
+" Handle multiple buffers better.
+set hidden     
+
+" Enhanced command line completion.
+set wildmenu     
+
+" Complete files like a shell.
+set wildmode=list:longest      
+
+" Case-insensitive searching.
+set ignorecase 
+
+" But case-sensitive if expression contains a capital letter.
+set smartcase        
+
+" Show line numbers.
+set number         
+
+" Show cursor position.
+set ruler         
+
+" Turn of .swp files and select a tmp dir for them
+set noswapfile                   
+set directory=$HOME/.vim/tmp//,.
+
+" Turn text wrap off
+set wrap!
+
+" Highlight matches.
+set hlsearch      
+
+" Set the terminal's title
+set title               
+
+" No beeping.
+set visualbell                   
+
+" Don't make a backup before overwriting a file.
+set nobackup       
+set nowritebackup 
+
+" Global tab width.
+set tabstop=2     
+set shiftwidth=2 
+set expandtab   
+
+" Set visible cursor line
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+hi CursorLine ctermbg=240
+hi Normal ctermbg=none
+
+" Abbreviations
+ab cl, console.log('=========>',)<ESC>i
+
+" Enable system clipboard
+if $TMUX == ''
+  "set clipboard=unnamed
+  set clipboard+=unnamed
 endif
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
+" let Vundle manage Vundle
+Bundle 'VundleVim/Vundle.vim'
+Bundle 'rking/ag.vim'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-cucumber'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
+Bundle 'godlygeek/tabular'
+Bundle 'airblade/vim-gitgutter'
 
-abbr pry! require 'pry'; binding.pry
+Bundle 'tpope/vim-fugitive'
+" Show the status line all the time
+set laststatus=2 
+" Useful status information at bottom of screen
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-" Autosave
-" let g:auto_save = 1
-" let g:auto_save_in_insert_mode = 0
-"
-set incsearch
-set hlsearch
+Bundle 'Valloric/YouCompleteMe'
+set completeopt-=preview
 
-let g:gitgutter_sign_column_always = 1
-let g:gitgutter_highlight_lines = 0
+Bundle 'kien/rainbow_parentheses.vim'
+" Toggle RainbowParenthese highlighting
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow#blacklist = [233, 234, 236]
 
-highlight clear SignColumn
+Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+" set autochdir
+lcd %:p:h
+autocmd BufEnter * let b:syntastic_javascript_eslint_exec = system('echo -n $(npm bin)/eslint')
+let g:syntastic_error_symbol = '🔴'
+highlight link SyntasticErrorSign SignColumn
+let g:syntastic_warning_symbol = '🔵'
+highlight link SyntasticWarningSign SignColumn
+
+Bundle 'scrooloose/nerdtree'
+map ,p :NERDTreeToggle<CR>
+nmap ,n :NERDTreeFind<CR>
+
+Bundle 'kien/ctrlp.vim'
+map ,b :CtrlPBuffer<CR>
+" CtrtlP Plugin mappings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+" Exclude the following:
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" Custom ignore
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+Bundle 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
+
+call vundle#end()
