@@ -94,6 +94,9 @@ set tabstop=2
 set shiftwidth=2 
 set expandtab   
 
+" Set UTF8 encoding
+set encoding=utf8
+
 " Set visible cursor line
 augroup CursorLine
   au!
@@ -127,6 +130,9 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
+Bundle 'ryanoasis/vim-devicons'
+Bundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 Bundle 'tpope/vim-fugitive'
 " Show the status line all the time

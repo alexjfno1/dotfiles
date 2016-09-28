@@ -13,8 +13,11 @@
 
 ## Install Dotfiles
   1. Apply the Tomorrow Night Eighties Theme (`Tomorrow Night Eighties.itermcolors`)
-  2. Install and set Hack font (`HackFont/*`)
-  3. Run `./setup.sh`
+  2. Clone Nerd Fonts `git clone https://github.com/ryanoasis/nerd-fonts`
+  3. `cd nerd-fonts/`
+  4. Install Hack font `./install./install.sh Hack`
+  5. Set iTerm2 font as `Knack NF`
+  6. Run `./setup.sh`
 
 ## Colourful terminal prompt
 If you would like a colourful more useful terminal prompt copy the following into `~/.bashrc`
