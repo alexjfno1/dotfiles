@@ -170,6 +170,7 @@ highlight link SyntasticWarningSign SignColumn
 Bundle 'scrooloose/nerdtree'
 map ,p :NERDTreeToggle<CR>
 nmap ,n :NERDTreeFind<CR>
+let NERDTreeIgnore=['node_modules']
 
 Bundle 'kien/ctrlp.vim'
 map ,b :CtrlPBuffer<CR>
