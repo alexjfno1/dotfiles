@@ -7,15 +7,19 @@
   4. Install Hack font `./install./install.sh Hack`
   5. Set iTerm2 font as `Knack NF`
   6. Run `./setup.sh`
+  7. Install [Vundle](https://github.com/VundleVim/Vundle.vim)
+  8. Open Vim and run `:BundleInstall`
 
 ## Full Mac Setup
   1. [Download](https://www.iterm2.com) and install iTerm2
-  2. Follow the steps above to install the dotfiles
-  5. Add `export PATH=/usr/local/bin:$PATH` to your .bashrc and restart the terminal
-  6. Open Vim and run `:BundleInstall`
-  7. Install your prefered version of Node.js e.g. `nvm install 6`
-  8. Install your prefered version of Ruby e.g. `rvm install 2.3.1`
-  9. Run `./you-complete-me-setup.sh`
+  2. Install [Brew](https://brew.sh)
+  3. Install lastest Git `brew install git`
+  4. Install latest Vim `brew install vim` 
+  5. Follow the steps above to install the dotfiles
+  6. Add `export PATH=/usr/local/bin:$PATH` to your .bashrc and restart the terminal
+  8. Install your prefered version of Node.js e.g. `nvm install 6`
+  9. Install your prefered version of Ruby e.g. `rvm install 2.3.1`
+  10. Run `./you-complete-me-setup.sh`
 
 ## Colourful terminal prompt
 If you would like a colourful more useful terminal prompt copy the following into `~/.bashrc`
