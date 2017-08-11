@@ -15,11 +15,13 @@
   2. Install [Brew](https://brew.sh)
   3. Install lastest Git `brew install git`
   4. Install latest Vim `brew install vim` 
-  5. Follow the steps above to install the dotfiles
-  6. Add `export PATH=/usr/local/bin:$PATH` to your .bashrc and restart the terminal
-  8. Install your prefered version of Node.js e.g. `nvm install 6`
-  9. Install your prefered version of Ruby e.g. `rvm install 2.3.1`
-  10. Run `./you-complete-me-setup.sh`
+  5. Install Tmux `brew install tmux`
+  6. Install Reattach To User Namespace `brew install reattach-to-user-namespace`
+  7. Follow the steps above to install the dotfiles
+  8. Add `export PATH=/usr/local/bin:$PATH` to your .bashrc and restart the terminal
+  9. Install your prefered version of Node.js e.g. `nvm install 6`
+  10. Install your prefered version of Ruby e.g. `rvm install 4.3.1`
+  11. Run `./you-complete-me-setup.sh`
 
 ## Colourful terminal prompt
 If you would like a colourful more useful terminal prompt copy the following into `~/.bashrc`
