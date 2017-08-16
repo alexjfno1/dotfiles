@@ -131,8 +131,14 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
-Bundle 'ryanoasis/vim-devicons'
 Bundle 'tiagofumo/vim-nerdtree-syntax-highlight'
+Bundle 'christoomey/vim-tmux-navigator'
+
+Bundle 'ternjs/tern_for_vim'
+" Enable keyboard shortcuts
+let g:tern_map_keys=1
+" Show argument hints
+let g:tern_show_argument_hints='on_hold'
 
 Bundle 'tpope/vim-fugitive'
 " Show the status line all the time
@@ -186,5 +192,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
+
+Bundle 'MaxMEllon/vim-jsx-pretty'
+let g:vim_jsx_pretty_colorful_config = 1
 
 call vundle#end()
