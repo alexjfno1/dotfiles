@@ -131,8 +131,26 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
-Bundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 Bundle 'christoomey/vim-tmux-navigator'
+
+Bundle 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Enable file hightlighting
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" Colours for files
+let s:green = "8FAA54"
+let s:lightPurple = "834F79"
+let s:blue = "689FB6"
+let s:red = "AE403F"
+
+" Set colour for each filetype
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor['css'] = s:red
+let g:NERDTreeExtensionHighlightColor['js'] = s:blue
+let g:NERDTreeExtensionHighlightColor['html'] = s:lightPurple
+let g:NERDTreeExtensionHighlightColor['json'] = s:green
 
 Bundle 'ternjs/tern_for_vim'
 " Enable keyboard shortcuts
