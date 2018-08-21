@@ -128,11 +128,11 @@ Bundle 'tpope/vim-ragtag'
 Bundle 'tpope/vim-cucumber'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'jelera/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
 Bundle 'godlygeek/tabular'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'leshill/vim-json'
 
 Bundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Enable file hightlighting
@@ -159,9 +159,6 @@ set laststatus=2
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-Bundle 'Valloric/YouCompleteMe'
-set completeopt-=preview
-
 Bundle 'kien/rainbow_parentheses.vim'
 " Toggle RainbowParenthese highlighting
 au VimEnter * RainbowParenthesesToggle
@@ -178,7 +175,6 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-" set autochdir
 lcd %:p:h
 autocmd BufEnter * let b:syntastic_javascript_eslint_exec = system('echo -n $(npm bin)/eslint')
 let g:syntastic_error_symbol = '🔴'
@@ -206,8 +202,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 
-Bundle 'chemzqm/vim-jsx-improve'
-"Bundle 'MaxMEllon/vim-jsx-pretty'
-"let g:vim_jsx_pretty_colorful_config = 1
+Bundle 'prettier/vim-prettier'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
 
 call vundle#end()
