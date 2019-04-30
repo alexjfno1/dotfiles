@@ -1,6 +1,5 @@
 set nocompatible                  " Must come first because it changes other options.
-filetype off
-
+filetype off 
 "Colour scheme
 colorscheme Tomorrow-Night-Eighties
 set background=dark
@@ -203,7 +202,16 @@ Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 
 Bundle 'prettier/vim-prettier'
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+
+Bundle 'Valloric/YouCompleteMe'
+" Start autocompletion after 4 chars
+let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_enable_diagnostic_highlighting = 0
+" Don't show YCM's preview window [ I find it really annoying ]
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
 
 call vundle#end()
