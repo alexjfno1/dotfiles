@@ -7,7 +7,7 @@
 5. Install Vim - `brew install vim`
 6. [Install NVM](https://github.com/nvm-sh/nvm)
 7. Setup dotfiles - `./setup.sh`
-8. Install Spaceship prompt
+8. Install Spaceship prompt - `brew install spaceship`
 9. Install [Git Branch Manager](https://github.com/alexjfno1/git-branch-manager)
 10. Add Spaceship prompt settings to `~/.zshrc`:
 
